@@ -1,0 +1,7 @@
+.container {
+    display: flex;
+    align-items: flex-end;
+    height: calc(100vh - 40px);
+    width: calc(100vw - 40px);
+    margin: 20px;
+}
