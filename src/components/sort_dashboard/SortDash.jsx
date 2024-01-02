@@ -1,10 +1,10 @@
 import styles from './sortDash.module.css'
 
-function SortDash() {
+function SortDash({newArr}) {
 
     return (
       <div className={styles.dashContainer}>
-        <button className={styles.newArray}> Generate New Array</button>
+        <button className={styles.newArray} onClick={()=>newArr()}> Generate New Array</button>
         <button className={styles.mergeSort}> Merge Sort</button>
       </div>
     )
