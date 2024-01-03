@@ -32,45 +32,31 @@ export function getMergeSortAnimations(array) {
     let i = startIndex;
     let j = middleIndex + 1;
     while (i <= middleIndex && j <= endIndex) {
-      // These are the values that we're comparing; we push them once
-      // to change their color.
+      // Push comparison values to change color
       animations.push([i, j]);
-      // These are the values that we're comparing; we push them a second
-      // time to revert their color.
+      // Push comparison values to revert to original color
       animations.push([i, j]);
       if (auxArray[i] <= auxArray[j]) {
-        // We overwrite the value at index k in the original array with the
+        // Overwrite value at index k in the original array with the
         // value at index i in the aux array.
         animations.push([k, auxArray[i]]);
         mainArray[k++] = auxArray[i++];
       } else {
-        // We overwrite the value at index k in the original array with the
-        // value at index j in the aux array.
+        // Overwrite with j instead
         animations.push([k, auxArray[j]]);
         mainArray[k++] = auxArray[j++];
       }
     }
+    // Logic mirrors preceding while, simply adjusted to handle i || j, not i && j
     while (i <= middleIndex) {
-      // These are the values that we're comparing; we push them once
-      // to change their color.
       animations.push([i, i]);
-      // These are the values that we're comparing; we push them a second
-      // time to revert their color.
       animations.push([i, i]);
-      // We overwrite the value at index k in the original array with the
-      // value at index i in the aux array.
       animations.push([k, auxArray[i]]);
       mainArray[k++] = auxArray[i++];
     }
     while (j <= endIndex) {
-      // These are the values that we're comparing; we push them once
-      // to change their color.
       animations.push([j, j]);
-      // These are the values that we're comparing; we push them a second
-      // time to revert their color.
       animations.push([j, j]);
-      // We overwrite the value at index k in the original array with the
-      // value at index j in the aux array.
       animations.push([k, auxArray[j]]);
       mainArray[k++] = auxArray[j++];
     }
