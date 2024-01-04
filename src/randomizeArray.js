@@ -9,8 +9,6 @@ export default function () {
   
     // Generate an array with random integers
     const randomArray = Array.from({ length }, () => Math.floor(Math.random() * (maxValue - minValue + 1)) + minValue);
-  
+    
     return randomArray;
   }
-  
-  
