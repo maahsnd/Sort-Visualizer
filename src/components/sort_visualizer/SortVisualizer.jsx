@@ -4,6 +4,7 @@ import styles from './sortVisualizer.module.css';
 import SortDash from '../sort_dashboard/SortDash';
 import randomizeArray from '../../randomizeArray';
 import mergeSort from '../../sortingAlgorithms/mergeSort';
+import quickSort from '../../sortingAlgorithms/quickSort';
 
 function SortVisualizer() {
   const [array, setArray] = useState([]);
@@ -20,7 +21,7 @@ function SortVisualizer() {
     const animations = mergeSort(array);
     for (let i = 0; i < animations.length; i++) {
       const intBars = document.getElementsByClassName(`${styles.intBar}`);
-      console.log(intBars)
+      console.log(intBars);
       const isColorChange = i % 3 !== 2;
       if (isColorChange) {
         const [barOneIndex, barTwoIndex] = animations[i];
@@ -39,7 +40,11 @@ function SortVisualizer() {
         }, i * 20);
       }
     }
-  }
+  };
+
+  const quick = () => {
+    setArray(quickSort());
+  };
 
   return (
     <div className={styles.container}>
@@ -52,7 +57,7 @@ function SortVisualizer() {
           ></div>
         ))}
       </div>
-      <SortDash mergeSort={merge} newArr={newArr}></SortDash>
+      <SortDash quickSort={quick} mergeSort={merge} newArr={newArr}></SortDash>
     </div>
   );
 }
