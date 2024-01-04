@@ -19,9 +19,8 @@ function SortVisualizer() {
 
   const merge = () => {
     const animations = mergeSort(array);
+    const intBars = document.getElementsByClassName(`${styles.intBar}`);
     for (let i = 0; i < animations.length; i++) {
-      const intBars = document.getElementsByClassName(`${styles.intBar}`);
-      console.log(intBars);
       const isColorChange = i % 3 !== 2;
       if (isColorChange) {
         const [barOneIndex, barTwoIndex] = animations[i];
@@ -36,15 +35,41 @@ function SortVisualizer() {
         setTimeout(() => {
           const [barOneIndex, newHeight] = animations[i];
           const barOneStyle = intBars[barOneIndex].style;
-          barOneStyle.height = `${newHeight}px`;
+          barOneStyle.height = `${newHeight / 10}%`;
         }, i * 20);
       }
     }
   };
 
+  //give it a try. if it doesn't work, review what I'm doing with animation push a iteration
   const quick = () => {
-    setArray(quickSort());
+    const animations = quickSort(array);
+    const intBars = document.getElementsByClassName(`${styles.intBar}`);
+    console.log(animations);
+    for (let i = 0; i < animations.length; i++) {
+      console.log(i)
+      const x = animations[i][2];
+
+      if (x !== 0) {
+       const barOneIndex = animations[i][0] ;
+       const barTwoIndex = animations[i][1];
+        const barOneStyle = intBars[barOneIndex].style;
+        const barTwoStyle = intBars[barTwoIndex].style;
+        const color = animations[i][2] % 2 === 0 ? 'pink' : 'teal';
+        setTimeout(() => {
+          barOneStyle.backgroundColor = color;
+          barTwoStyle.backgroundColor = color;
+        }, i * 20);
+      } else {
+        setTimeout(() => {
+          const [barIndex, newHeight, x] = animations[i];
+          const barStyle = intBars[barIndex].style;
+          barStyle.height = `${newHeight / 10}%`;
+        }, i * 20);
+      }
+    }
   };
+  
 
   return (
     <div className={styles.container}>
