@@ -1,4 +1,4 @@
-export default function quickSort(array) {
+export default function (array) {
   // Animation schema for quick sort:
   // Animation type indicated by third value in array
   // [index, comparison index/element value, animation type]
@@ -27,6 +27,8 @@ export default function quickSort(array) {
     // Push swap animations (pivot to low index)
     animations.push([pivotIndex, array[low], 0]);
     animations.push([low, array[pivotIndex], 0])
+    animations.push([low, pivotIndex, 1])
+    animations.push([low, pivotIndex, 2])
     // Swap pivot with the element at index low. ES6 swap threw err, hence use temp
     let temp = array[low];
     array[low] = array[pivotIndex];
