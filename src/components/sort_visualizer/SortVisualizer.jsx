@@ -40,18 +40,13 @@ function SortVisualizer() {
       }
     }
   };
-
-  //give it a try. if it doesn't work, review what I'm doing with animation push a iteration
   const quick = () => {
     const animations = quickSort(array);
     const intBars = document.getElementsByClassName(`${styles.intBar}`);
-    console.log(animations);
     for (let i = 0; i < animations.length; i++) {
-      console.log(i)
       const x = animations[i][2];
-
       if (x !== 0) {
-       const barOneIndex = animations[i][0] ;
+       const barOneIndex = animations[i][0];
        const barTwoIndex = animations[i][1];
         const barOneStyle = intBars[barOneIndex].style;
         const barTwoStyle = intBars[barTwoIndex].style;
@@ -70,7 +65,6 @@ function SortVisualizer() {
     }
   };
   
-
   return (
     <div className={styles.container}>
       <div className={styles.arrayContainer}>
