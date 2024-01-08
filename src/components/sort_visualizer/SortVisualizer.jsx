@@ -7,6 +7,7 @@ import mergeSort from '../../sortingAlgorithms/mergeSort';
 import quickSort from '../../sortingAlgorithms/quickSort';
 import heapSort from '../../sortingAlgorithms/heapSort';
 import selectionSort from '../../sortingAlgorithms/selectionSort';
+import bubbleSort from '../../sortingAlgorithms/bubbleSort';
 
 function SortVisualizer() {
   const [array, setArray] = useState([]);
@@ -71,6 +72,11 @@ function SortVisualizer() {
     animateThreeVal(animations);
   };
 
+  const bubble = ()  => {
+    const animations = bubbleSort(array);
+    animateThreeVal(animations)
+  }
+
   return (
     <div className={styles.container}>
       <div className={styles.arrayContainer}>
@@ -88,6 +94,7 @@ function SortVisualizer() {
         quickSort={quick}
         mergeSort={merge}
         newArr={newArr}
+        bubbleSort={bubble}
       ></SortDash>
     </div>
   );

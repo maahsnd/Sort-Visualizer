@@ -1,6 +1,6 @@
 import styles from './sortDash.module.css';
 
-function SortDash({ newArr, mergeSort, quickSort, heapSort, selectionSort }) {
+function SortDash({ newArr, mergeSort, quickSort, heapSort, selectionSort, bubbleSort }) {
   return (
     <div className={styles.dashContainer}>
       <button className={styles.newArray} onClick={() => newArr()}>
@@ -10,6 +10,7 @@ function SortDash({ newArr, mergeSort, quickSort, heapSort, selectionSort }) {
       <button onClick={() => quickSort()}>Quick Sort</button>
       <button onClick={() => heapSort()}>Heap Sort</button>
       <button onClick={() => selectionSort()}>Selection Sort</button>
+      <button onClick={() => bubbleSort()}>Bubble Sort</button>
     </div>
   );
 }
