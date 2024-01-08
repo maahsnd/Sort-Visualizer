@@ -6,6 +6,7 @@ import randomizeArray from '../../randomizeArray';
 import mergeSort from '../../sortingAlgorithms/mergeSort';
 import quickSort from '../../sortingAlgorithms/quickSort';
 import heapSort from '../../sortingAlgorithms/heapSort';
+import selectionSort from '../../sortingAlgorithms/selectionSort';
 
 function SortVisualizer() {
   const [array, setArray] = useState([]);
@@ -65,6 +66,11 @@ function SortVisualizer() {
     animateThreeVal(animations);
   };
 
+  const selection = () => {
+    const animations = selectionSort(array);
+    animateThreeVal(animations);
+  };
+
   return (
     <div className={styles.container}>
       <div className={styles.arrayContainer}>
@@ -77,6 +83,7 @@ function SortVisualizer() {
         ))}
       </div>
       <SortDash
+        selectionSort={selection}
         heapSort={heap}
         quickSort={quick}
         mergeSort={merge}
