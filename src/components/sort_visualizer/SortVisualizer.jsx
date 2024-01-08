@@ -18,56 +18,9 @@ function SortVisualizer() {
     newArr();
   }, []);
 
-  const merge = () => {
-    const animations = mergeSort(array);
-    const intBars = document.getElementsByClassName(`${styles.intBar}`);
-    for (let i = 0; i < animations.length; i++) {
-      const isColorChange = i % 3 !== 2;
-      if (isColorChange) {
-        const [barOneIndex, barTwoIndex] = animations[i];
-        const barOneStyle = intBars[barOneIndex].style;
-        const barTwoStyle = intBars[barTwoIndex].style;
-        const color = i % 3 === 0 ? 'teal' : 'pink';
-        setTimeout(() => {
-          barOneStyle.backgroundColor = color;
-          barTwoStyle.backgroundColor = color;
-        }, i * 20);
-      } else {
-        setTimeout(() => {
-          const [barOneIndex, newHeight] = animations[i];
-          const barOneStyle = intBars[barOneIndex].style;
-          barOneStyle.height = `${newHeight / 10}%`;
-        }, i * 20);
-      }
-    }
-  };
-  const quick = () => {
-    const animations = quickSort(array);
-    const intBars = document.getElementsByClassName(`${styles.intBar}`);
-    for (let i = 0; i < animations.length; i++) {
-      const x = animations[i][2];
-      if (x !== 0) {
-       const barOneIndex = animations[i][0];
-       const barTwoIndex = animations[i][1];
-        const barOneStyle = intBars[barOneIndex].style;
-        const barTwoStyle = intBars[barTwoIndex].style;
-        const color = animations[i][2] % 2 === 0 ? 'pink' : 'teal';
-        setTimeout(() => {
-          barOneStyle.backgroundColor = color;
-          barTwoStyle.backgroundColor = color;
-        }, i * 20);
-      } else {
-        setTimeout(() => {
-          const [barIndex, newHeight, x] = animations[i];
-          const barStyle = intBars[barIndex].style;
-          barStyle.height = `${newHeight / 10}%`;
-        }, i * 20);
-      }
-    }
-  };
-
-  const heap = () => {
-    const animations = heapSort(array);
+  // Process animation arrays that use a [x, x, 0-3] to indicate
+  // animation type
+  const animateThreeVal = (animations) => {
     const intBars = document.getElementsByClassName(`${styles.intBar}`);
     for (let i = 0; i < animations.length; i++) {
       const x = animations[i][2];
@@ -76,11 +29,11 @@ function SortVisualizer() {
         const barStyle = intBars[barIndex].style;
         setTimeout(() => {
           barStyle.backgroundColor = 'pink';
-        }, i * 20)
+        }, i * 20);
       }
       if (x === 1 || x === 2) {
-       const barOneIndex = animations[i][0];
-       const barTwoIndex = animations[i][1];
+        const barOneIndex = animations[i][0];
+        const barTwoIndex = animations[i][1];
         const barOneStyle = intBars[barOneIndex].style;
         const barTwoStyle = intBars[barTwoIndex].style;
         const color = animations[i][2] % 2 === 0 ? 'skyblue' : 'teal';
@@ -88,7 +41,8 @@ function SortVisualizer() {
           barOneStyle.backgroundColor = color;
           barTwoStyle.backgroundColor = color;
         }, i * 20);
-      } if (x === 0) {
+      }
+      if (x === 0) {
         setTimeout(() => {
           const [barIndex, newHeight, x] = animations[i];
           const barStyle = intBars[barIndex].style;
@@ -96,8 +50,21 @@ function SortVisualizer() {
         }, i * 20);
       }
     }
-  }
-  
+  };
+  const quick = () => {
+    const animations = quickSort(array);
+    animateThreeVal(animations);
+  };
+
+  const heap = () => {
+    const animations = heapSort(array);
+    animateThreeVal(animations);
+  };
+  const merge = () => {
+    const animations = mergeSort(array);
+    animateThreeVal(animations);
+  };
+
   return (
     <div className={styles.container}>
       <div className={styles.arrayContainer}>
@@ -109,7 +76,12 @@ function SortVisualizer() {
           ></div>
         ))}
       </div>
-      <SortDash heapSort={heap} quickSort={quick} mergeSort={merge} newArr={newArr}></SortDash>
+      <SortDash
+        heapSort={heap}
+        quickSort={quick}
+        mergeSort={merge}
+        newArr={newArr}
+      ></SortDash>
     </div>
   );
 }

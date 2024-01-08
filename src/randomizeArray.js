@@ -1,6 +1,6 @@
 export default function () {
-    const minLength = 30;
-    const maxLength = 200;
+    const minLength = 10;
+    const maxLength = 60;
     const minValue = 0;
     const maxValue = 1000;
   
