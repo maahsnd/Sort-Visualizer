@@ -12,12 +12,12 @@ import bubbleSort from '../../sortingAlgorithms/bubbleSort';
 function SortVisualizer() {
   const [array, setArray] = useState([]);
 
-  const newArr = () => {
-    setArray(randomizeArray());
+  const newArr = (length) => {
+    setArray(randomizeArray(length));
   };
 
   useEffect(() => {
-    newArr();
+    newArr(40);
   }, []);
 
   // Process animation arrays that use a [x, x, 0-3] to indicate
