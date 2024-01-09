@@ -11,3 +11,5 @@ differently depending on the stage of the sort. One color to indicate the values
 reversion to their original color after the comparison), a change in size to indicate swap, and a second color to 
 indicate an element being inserted into its final sorted position. The final animation proved the most difficult, 
 as it requires catching elements at a very specific point in the algorithm.
+
+Inspired by Clement Mihailescu.
