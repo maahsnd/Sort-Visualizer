@@ -11,9 +11,14 @@ import bubbleSort from '../../sortingAlgorithms/bubbleSort';
 
 function SortVisualizer() {
   const [array, setArray] = useState([]);
+  const [animationSpeed, setAnimationSpeed] = useState(10);
 
   const newArr = (length) => {
     setArray(randomizeArray(length));
+  };
+
+  const changeSpeed = (delayMs) => {
+    setAnimationSpeed(delayMs);
   };
 
   useEffect(() => {
@@ -42,14 +47,14 @@ function SortVisualizer() {
         setTimeout(() => {
           barOneStyle.backgroundColor = color;
           barTwoStyle.backgroundColor = color;
-        }, i * 20);
+        }, i * animationSpeed);
       }
       if (x === 0) {
         setTimeout(() => {
           const [barIndex, newHeight, x] = animations[i];
           const barStyle = intBars[barIndex].style;
           barStyle.height = `${newHeight / 10}%`;
-        }, i * 20);
+        }, i * animationSpeed);
       }
     }
   };
@@ -72,10 +77,10 @@ function SortVisualizer() {
     animateThreeVal(animations);
   };
 
-  const bubble = ()  => {
+  const bubble = () => {
     const animations = bubbleSort(array);
-    animateThreeVal(animations)
-  }
+    animateThreeVal(animations);
+  };
 
   return (
     <div className={styles.container}>
@@ -95,6 +100,7 @@ function SortVisualizer() {
         mergeSort={merge}
         newArr={newArr}
         bubbleSort={bubble}
+        changeSpeed={changeSpeed}
       ></SortDash>
     </div>
   );
