@@ -30,7 +30,7 @@ function partition(array, low, high, animations) {
   animations.push([low, array[pivotIndex], 0]);
   animations.push([low, pivotIndex, 1]);
   animations.push([low, pivotIndex, 2]);
-  // Swap pivot with the element at index low. ES6 swap threw err, hence use temp
+  // Swap pivot with the element at index low
   let temp = array[low];
   array[low] = array[pivotIndex];
   array[pivotIndex] = temp;
@@ -63,7 +63,6 @@ function partition(array, low, high, animations) {
   }
 
   // Swap array[low] and array[i] to place the pivot in the correct position
-  // ES6 swap threw err, hence use temp
   temp = array[low];
   array[low] = array[i];
   array[i] = temp;
